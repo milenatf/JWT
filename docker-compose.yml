@@ -43,7 +43,7 @@ services:
     volumes:
       - ./.docker/mysql/dbdata:/var/lib/mysql
     ports:
-      - "3387:3306"
+      - "3388:3306"
     networks:
       - jwt_tutorial_network
 networks:
