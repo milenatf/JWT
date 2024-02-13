@@ -2,7 +2,7 @@ version: "3.7"
 
 services:
   # image project
-  web_service_restful:
+  jwt_tutorial:
     build:
       args:
         user: milena
@@ -16,7 +16,7 @@ services:
     # depends_on:
     #     - redis
     networks:
-      - web_service_restful_network
+      - jwt_tutorial_network
 
   # nginx
   nginx:
@@ -28,10 +28,10 @@ services:
       - ./:/var/www
       - ./docker/nginx/:/etc/nginx/conf.d/
     networks:
-      - web_service_restful_network
+      - jwt_tutorial_network
 
   # db mysql
-  db_web_service_restful:
+  db_jwt_tutorial:
     image: mysql:5.7.22
     platform: linux/x86_64
     # restart: unless-stopped
@@ -45,7 +45,7 @@ services:
     ports:
       - "3387:3306"
     networks:
-      - web_service_restful_network
+      - jwt_tutorial_network
 networks:
-  web_service_restful_network:
+  jwt_tutorial_network:
     driver: bridge
