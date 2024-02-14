@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api\Auth;
 
+use App\Customs\Services\EmailVerificationService;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\LoginRequest;
 use App\Http\Requests\RegistrationRequest;
@@ -15,7 +16,7 @@ class AuthController extends Controller
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private EmailVerificationService $service)
     {
         $this->middleware('auth:api', ['except' => ['login', 'register']]);
     }
@@ -52,6 +53,7 @@ class AuthController extends Controller
          * Depois do usuário criado ele é registrado no token de acesso JWT
          */
         if($user) {
+            $this->service->sendVerificationLink($user); // Chama o serviço de envio de verificação de e-mail antes de fazer o login do usuário
             $token = auth()->login($user); // Faz o login do usuário registrado e cria o token de acesso
 
             return $this->respondWithToken($token, $user);
