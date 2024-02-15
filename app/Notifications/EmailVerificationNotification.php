@@ -7,7 +7,7 @@ use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
 /**
- * A classe EmailVerificationNotification de notificação de e-mail é utilizada para enviar o e-mail ao usuário
+ * A classe de notificação de e-mail EmailVerificationNotification  é utilizada para enviar o e-mail ao usuário
  * notificando-o que é necessário fazer a verificação do e-mail.
  *
  * Esta classe recebe um link que contém o token de verificação que será enviado ao e-mail do usuário

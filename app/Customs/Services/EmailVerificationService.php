@@ -25,7 +25,7 @@ class EmailVerificationService
     }
 
     /**
-     * Gerar o link de verificação que será enviao ao e-mail do usuário
+     * Método que vai gerar o link de verificação que será enviao ao e-mail do usuário
      * @param string $email
      * @return string
      */
@@ -39,7 +39,7 @@ class EmailVerificationService
          * Isso ocorre quando um usuário cria a sua conta e o tempo de expiração do token excede. Dessa forma o token de verificação se torna inválido
          * sendo necessário criar um outro token para que esse usuário possa verificar o seu e-mail
          */
-        $checkIfTokenExists = EmailVerificationToken::where('email', $email)->first(); // Verifica se ja existe  um token para este email do usuário
+        $checkIfTokenExists = EmailVerificationToken::where('email', $email)->first(); // Verifica se ja existe  um link que contém o e-mail do usuário
 
         if($checkIfTokenExists) // Se o token já existir
             $checkIfTokenExists->delete(); // Será excluído (antes de se criar um novo token)
